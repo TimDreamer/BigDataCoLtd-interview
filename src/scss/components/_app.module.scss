@@ -1,0 +1,28 @@
+@import "../media";
+.app {
+  display: flex;
+  max-width: 160rem;
+  height: 100vh;
+
+  @include respond(phone) {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  &__sidebar {
+    flex: 0 0 20%;
+    margin: 0 auto;
+    text-align: center;
+    height: 100%;
+  }
+  &__logo {
+    width: 50%;
+  }
+  &__title {
+    font-size: 3.2rem;
+  }
+  &__main {
+    flex: 1;
+    background-color: aliceblue;
+  }
+}
