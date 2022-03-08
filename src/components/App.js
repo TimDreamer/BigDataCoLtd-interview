@@ -1,4 +1,5 @@
 import React from "react";
+import { YEAR } from "../config";
 import { loadDB } from "../actions";
 import { connect } from "react-redux";
 import Chart from "./Chart";
@@ -17,9 +18,7 @@ class App extends React.Component {
       <div className={appStyle.app}>
         <aside className={appStyle.app__sidebar}>
           <img className={appStyle.app__logo} src={logo} alt="logo" />
-          <h1 className={appStyle.app__title}>
-            {this.props.year}年人口戶數及性別
-          </h1>
+          <h1 className={appStyle.app__title}>{YEAR}年人口戶數及性別</h1>
         </aside>
         <main className={appStyle.app__main}>
           <Chart />
@@ -29,6 +28,4 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ year }) => ({ year });
-
-export default connect(mapStateToProps, { loadDB })(App);
+export default connect(null, { loadDB })(App);

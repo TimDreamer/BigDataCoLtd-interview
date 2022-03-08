@@ -1,15 +1,5 @@
 import { tapeiPopulation } from "../apis";
-import {
-  LOAD_SITES,
-  LOAD_HOUSEHOLD,
-  SET_YEAR,
-  CHANGE_SELECTED,
-} from "../config";
-
-const setYear = (newYear) => ({
-  type: SET_YEAR,
-  payload: newYear,
-});
+import { YEAR, LOAD_SITES, LOAD_HOUSEHOLD, CHANGE_SELECTED } from "../config";
 
 const loadSites = (sites) => ({
   type: LOAD_SITES,
@@ -31,16 +21,12 @@ export const changeSelect = (selected) => {
 // need Optimization
 // Error handling
 export const loadDB = () => async (dispatch) => {
-  const res = await tapeiPopulation.get();
+  const res = await tapeiPopulation.get(YEAR);
   const data = res.data.responseData;
-
-  data?.[0]?.["statistic_yyy"] && dispatch(setYear(data[0]["statistic_yyy"]));
 
   const sites = [
     ...data.reduce((acc, entry) => {
-      // need to change when using URL API
-
-      entry["site_id"].startsWith("臺北") && acc.add(entry["site_id"]);
+      acc.add(entry["site_id"]);
       return acc;
     }, new Set()),
   ];
